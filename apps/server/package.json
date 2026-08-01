@@ -16,7 +16,9 @@
   "": true,
   "dependencies": {
     "express": "^5.2.1",
-    "server": "workspace:*"
+    "p-limit": "^7.3.1",
+    "server": "workspace:*",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
