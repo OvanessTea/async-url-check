@@ -1,20 +1,11 @@
-import express, { Application, Request, Response } from "express";
+import { app } from './app';
 
-const app: Application = express();
-const port = 3000; // The port your express server will be running on.
+const PORT = Number(
+  process.env.PORT ?? 3000,
+);
 
-// Enable URL-encoded form data parsing
-app.use(express.urlencoded({ extended: true }));
-
-// Middleware to parse JSON bodies
-app.use(express.json());
-
-// Basic route
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, TypeScript + Express!');
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+app.listen(PORT, () => {
+  console.log(
+    `Server started on http://localhost:${PORT}`
+  )
+})
