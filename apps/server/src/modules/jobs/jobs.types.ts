@@ -16,6 +16,7 @@ interface Job {
     id: string;
     createdAt: string;
     status: JobStatus;
+    urls: JobUrl[];
 }
 
 interface JobUrl {
