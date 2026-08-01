@@ -1,10 +1,11 @@
 {
-  "name": "3205",
+  "name": "async-url-check",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:server": "pnpm --filter server run dev"
   },
   "keywords": [],
   "author": "",
