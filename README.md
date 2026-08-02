@@ -81,7 +81,7 @@
 
     Содержимое:
 
-        VITE_API_URL=http://localhost:3000/api
+        VITE_API_URL=/api
 
 **2. Из корневой директории проекта**
 
