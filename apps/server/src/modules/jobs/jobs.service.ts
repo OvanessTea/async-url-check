@@ -55,10 +55,15 @@ export class JobsService {
                 'Job not found'
             )
         }
-        if (job.status === 'completed') {
+
+        const isFinished = job.status === 'completed' ||
+            job.status === 'failed' ||
+            job.status === 'cancelled';
+            
+        if (isFinished) {
             throw new AppError(
                 409,
-                'Completed job cannot be cancelled'
+                'Finished job cannot be cancelled'
             )
         }
         return this.repository.cancel(id);
