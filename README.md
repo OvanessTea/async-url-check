@@ -61,7 +61,29 @@
 
 ### Запуск
 
-- Из корневой директории проекта:
+**1. Настроить переменные окружения**
+
+- Backend
+
+    Создать файл:
+
+        apps/server/.env
+
+    Содержимое:
+
+        PORT=3000
+        CLIENT_URL=http://localhost:5173
+- Frontend
+
+    Создать файл:
+
+        apps/client/.env
+
+    Содержимое:
+
+        VITE_API_URL=http://localhost:3000/api
+
+**2. Из корневой директории проекта**
 
 ```bash 
 docker compose up --build
