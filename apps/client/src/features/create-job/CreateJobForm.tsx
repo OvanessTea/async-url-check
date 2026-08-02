@@ -1,11 +1,12 @@
 import { type CreateJobInput, createJobSchema} from "./CreateJobSchema";
 import { useForm } from 'react-hook-form';
-import { createJob } from "@/entities/job/api/jobs-api";
+import { createJob, getJobs } from "@/entities/job/api/jobs-api";
 import { useJobsStore } from "@/entities/job/model/store";
 import { zodResolver } from '@hookform/resolvers/zod';
 
 export function CreateJobForm() {
     const setActiveJobId = useJobsStore((state) => state.setActiveJobId);
+    const setJobs = useJobsStore((state) => state.setJobs);
 
     const {
         register,
@@ -29,6 +30,9 @@ export function CreateJobForm() {
             .filter(Boolean);
 
         const { jobId } = await createJob(urls);
+        const jobs = await getJobs();
+
+        setJobs(jobs);
         setActiveJobId(jobId);
         reset();
     }

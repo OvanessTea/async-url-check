@@ -10,6 +10,7 @@ interface JobsState {
     activeJobId: string | null;
     activeJob: JobDetails | null;
     setJobs: (jobs: JobListItem[]) => void;
+    addJob: (job: JobListItem) => void;
     setActiveJobId: (id: string | null) => void;
     setActiveJob: (job: JobDetails | null) => void;
 }
@@ -21,6 +22,14 @@ export const useJobsStore =
         activeJob: null,
         setJobs: (jobs) => {
             set({ jobs });
+        },
+        addJob: (job) => {
+            set((state) => ({
+                jobs: [
+                    job,
+                    ...state.jobs
+                ]
+            }))
         },
         setActiveJobId: (id) => {
             set({

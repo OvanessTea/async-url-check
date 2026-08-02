@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { getJobs } from '@/entities/job/api/jobs-api';
 import { useJobsStore } from '@/entities/job/model/store';
 import { CreateJobForm } from '@/features/create-job/CreateJobForm';
+import { JobsList } from '@/widgets/jobs-list/JobsList';
 
 function App() {
 	const setJobs = useJobsStore((state) => state.setJobs);
@@ -16,6 +17,8 @@ function App() {
 		<div>
 			<h1>Job Checker</h1>
 			<CreateJobForm />
+			<hr />
+			<JobsList/>
 		</div>
 	)
 }
