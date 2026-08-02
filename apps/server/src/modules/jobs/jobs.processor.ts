@@ -51,9 +51,7 @@ export class JobsProcessor {
 
                 if (!currentJob || currentJob.status === 'cancelled') return;
                 
-                const nextUrl = currentJob.urls
-                    .filter((url) => url.status === 'pending')
-                    [nextIndex++];
+                const nextUrl = currentJob.urls[nextIndex++];
                 
                 if (!nextUrl) return;
 
