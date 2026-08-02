@@ -14,10 +14,14 @@ export async function getJobs(): Promise<JobListItem[]> {
 }
 
 export async function getJob(
-    id: string
+    id: string,
+    signal?: AbortSignal
 ): Promise<JobDetails> {
     return apiClient<JobDetails>(
-        `/jobs/${id}`
+        `/jobs/${id}`,
+        {
+            signal
+        }
     );
 }
 
