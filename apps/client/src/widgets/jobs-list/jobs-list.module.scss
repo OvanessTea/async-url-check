@@ -1,10 +1,132 @@
-.button {
+.wrapper {
+    min-height: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    h2 {
+        margin: 0;
+        color: #374151;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04rem;
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 22px;
+        height: 22px;
+        padding: 0 6px;
+        color: #6b7280;
+        background:#f3f4f6;
+        border-radius: 999px;
+        font-size: 11px;
+    }
+}
+
+.list {
+    min-height: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: thin;
+}
+
+.item {
+    flex-shrink: 0;
     display: block;
     width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    text-align: left;
+    padding: 11px;
+    color: inherit;
     background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+    text-align: left;
     cursor: pointer;
-    border: 1px solid #ccc;
+    transition: 
+       border-color 150ms ease 
+       background 150ms ease;
+
+    &:hover {
+        background: #f9fafb;
+        border-color: #d1d5db;
+    }
+}
+
+.active {
+    background: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.itemHeader {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 7px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    &.pending {
+        background: #f59e0b;
+    }
+    &.in_progress {
+        background: #3b82f6;
+    }
+    &.completed {
+        background: #22c55e;
+    }
+    &.failed {
+        background: #ef4444;
+    }
+    &.cancelled {
+        background: #9ca3af;
+    }
+}
+
+.status {
+    color: #6b7280;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.date {
+    margin-left: auto;
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+.id {
+    overflow: hidden;
+    margin-bottom: 8px;
+    color: #374151;
+    font-family: monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.stats {
+    display: flex;
+    gap: 10px;
+    color: #9ca3af;
+    font-size: 11px;
 }

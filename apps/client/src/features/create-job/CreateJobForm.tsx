@@ -1,8 +1,10 @@
-import { type CreateJobInput, createJobSchema} from "./CreateJobSchema";
+import { type CreateJobInput, createJobSchema } from "./CreateJobSchema";
 import { useForm } from 'react-hook-form';
 import { createJob, getJobs } from "@/entities/job/api/jobs-api";
 import { useJobsStore } from "@/entities/job/model/store";
 import { zodResolver } from '@hookform/resolvers/zod';
+
+import styles from './create-job-form.module.scss';
 
 export function CreateJobForm() {
     const setActiveJobId = useJobsStore((state) => state.setActiveJobId);
@@ -38,25 +40,41 @@ export function CreateJobForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <textarea
-                {...register('urls')}
-                placeholder={
-                    'https://google.com\nhttps://github.com'
-                }
-                rows={8}
-            />
+        <div className={styles.card}>
+            <div className={styles.header}>
+                <div>
+                    <h2>
+                        Новая проверка
+                    </h2>
+                    <p>
+                        Каждый URL с новой строки
+                    </p>
+                </div>
+            </div>
+            <form
+                className={styles.form}
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <textarea
+                    {...register('urls')}
+                    placeholder={
+                        'https://google.com\nhttps://github.com'
+                    }
+                    rows={8}
+                />
 
-            {errors.urls && (
-                <p>{errors.urls.message}</p>
-            )}
-
-            <button type="submit" disabled={isSubmitting || !!errors.urls}>
-                {isSubmitting
-                    ? 'Запуск...'
-                    : 'Запустить проверку'
-                }
-            </button>
-        </form>
+                <div className={styles.footer}>
+                    {errors.urls && (
+                        <span>{errors.urls.message}</span>
+                    )}
+                    <button type="submit" disabled={isSubmitting || !!errors.urls}>
+                        {isSubmitting
+                            ? 'Запуск...'
+                            : 'Запустить проверку'
+                        }
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 }

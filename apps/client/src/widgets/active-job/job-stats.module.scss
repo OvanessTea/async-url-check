@@ -1,0 +1,39 @@
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #4b5563;
+    font-size: 14px;
+}
+
+.icon {
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.success {
+    color: #15803d;
+    background: #dcfce7;
+}
+
+.error {
+    color: #b91c1c;
+    background: #fee2e2;
+}
+
+.cancelled {
+    color: #6b7280;
+    background: #f3f4f6;
+}

@@ -14,27 +14,32 @@ export function JobListItem({
     return (
         <button 
             onClick={onClick} 
-            className={styles.button}
-            style={{borderColor: isActive ? 'blue': '#ccc'}}
+            className={`${styles.item} ${isActive ? styles.active : ''}`}
         >
-            <div>
-                <strong>
-                    {job.id}
-                </strong>
+            <div className={styles.itemHeader}>
+                <span className={`${styles.dot} ${styles[job.status]}`}/>
+                <span className={styles.status}>
+                    {job.status}
+                </span>
+                <span className={styles.date}>
+                    {new Date(job.createdAt)
+                        .toLocaleTimeString(
+                            'ru-RU',
+                            {
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            }
+                        )
+                    }
+                </span>
             </div>
-            <div>
-                URL: {job.urlCount}
+            <div className={styles.id}>
+                {job.id}
             </div>
-            <div>
-                Успешно: {job.successful}
-            </div>
-            <div>
-                Ошибок: {job.failed}
-            </div>
-            <div>
-                {new Date(
-                    job.createdAt
-                ).toLocaleString()}
+            <div className={styles.stats}>
+                <span>{job.urlCount} URL</span>
+                <span>✓ {job.successful}</span>
+                <span>✕ {job.failed}</span>
             </div>
         </button>
     )
