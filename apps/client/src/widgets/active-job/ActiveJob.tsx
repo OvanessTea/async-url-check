@@ -7,6 +7,9 @@ export function ActiveJob() {
     const activeJob = useJobsStore((state) => state.activeJob);
     const activeJobLoading = useJobsStore((state) => state.activeJobLoading);
     const activeJobError = useJobsStore((state) => state.activeJobError);
+    const cancelLoading = useJobsStore((state) => state.cancelLoading);
+    const cancelError = useJobsStore((state) => state.cancelError);
+    const { cancelActiveJob } = useActiveJob();
 
     if (!activeJob) {
         if (activeJobLoading) {
@@ -45,6 +48,22 @@ export function ActiveJob() {
                 <p>Ошибка: {activeJobError}</p>
             )}
             <p>Статус: {activeJob.status}</p>
+            {activeJob.status === 'pending' || activeJob.status === 'in_progress' ? (
+                <button
+                    onClick={cancelActiveJob}
+                    disabled={cancelLoading}
+                >
+                    {cancelLoading
+                        ? 'Отмена...'
+                        : 'Отменить задание'
+                    }
+                </button>
+            ) : null}
+            {cancelError && (
+                <p>
+                    {cancelError}
+                </p>
+            )}
             <p>
                 Обработано: {processedCount}
                 из {' '}{activeJob.urls.length}

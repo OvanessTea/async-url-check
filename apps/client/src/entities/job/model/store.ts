@@ -16,6 +16,12 @@ interface JobsState {
     jobsError: string | null;
     activeJobError: string | null;
 
+    cancelLoading: boolean;
+    cancelError: string | null;
+
+    setCancelLoading: (flag: boolean) => void;
+    setCancelError: (error: string | null) => void;
+
     setJobs: (jobs: JobListItem[]) => void;
     setActiveJobId: (id: string | null) => void;
     setActiveJob: (job: JobDetails | null) => void;
@@ -41,6 +47,9 @@ export const useJobsStore =
 
         jobsError: null,
         activeJobError: null,
+
+        cancelLoading: false,
+        cancelError: null,
 
         setJobs: (jobs) => {
             set({ jobs });
@@ -80,6 +89,18 @@ export const useJobsStore =
         setActiveJobError: (error) => {
             set({
                 activeJobError: error
+            })
+        },
+
+        setCancelLoading: (flag) => {
+            set({
+                cancelLoading: flag
+            })
+        },
+
+        setCancelError: (error) => {
+            set({
+                cancelError: error
             })
         },
 

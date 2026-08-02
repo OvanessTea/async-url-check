@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getJob } from "@/entities/job/api/jobs-api";
+import { cancelJob, getJob } from "@/entities/job/api/jobs-api";
 import { useJobsStore } from "@/entities/job/model/store";
 import { toJobListItem } from "@/entities/job/model/mappers";
 
@@ -11,6 +11,8 @@ export function useActiveJob() {
     const setActiveJobLoading = useJobsStore((state) => state.setActiveJobLoading);
     const setActiveJobError = useJobsStore((state) => state.setActiveJobError);
     const updateJob = useJobsStore((state) => state.updateJob);
+    const setCancelLoading = useJobsStore((state) => state.setCancelLoading);
+    const setCancelError = useJobsStore((state) => state.setCancelError);
 
     useEffect(() => {
         if (!activeJobId) return;
@@ -68,6 +70,8 @@ export function useActiveJob() {
 
         poll();
 
+        
+
         return () => {
             cancelled = true;
             controller.abort();
@@ -82,4 +86,29 @@ export function useActiveJob() {
         setActiveJobLoading,
         setActiveJobError
     ]);
+
+    const cancelActiveJob = async () => {
+            if (!activeJobId) {
+                return;
+            }
+
+            try {
+                setCancelLoading(true);
+                setCancelError(null);
+
+                await cancelJob(activeJobId);
+            } catch (error) {
+                const message =
+                    error instanceof Error
+                        ? error.message
+                        : 'Не удалось отменить задание';
+
+                setCancelError(message);
+            } finally {
+                setCancelLoading(false);
+            }
+        };
+
+    return {cancelActiveJob, }
 }
+
